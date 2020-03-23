@@ -1,0 +1,56 @@
+
+<html>
+<head></head>
+<body>
+	<div id="eventJS">
+	</div>
+</body>
+<footer>
+<script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+<script type="text/javascript">
+ var exampleCallback = function() {
+        console.log('Registration complete!');
+    };
+
+var events = [
+	{
+		city: 'Madrid, Spain',
+		urlPart: 'madridcomedy',
+		id: '100554067924',
+	},
+	{
+		city: 'Barcelona, Spain',
+		urlPart: 'barcelonacomedy',
+		id: '100554067924',
+	},
+	{
+		city: 'Chicago, Illinois',
+		urlPart: 'comedychicago',
+		id: '100573718700',
+	},
+	{
+		city: 'Mostar, Bosnia & Herzegovina',
+		urlPart: 'mostarcomedy',
+		id: '100569355650',
+	}
+];
+
+events.forEach(function(x) {
+	var button = `<noscript><a href="https://`+x.urlPart+`.eventbrite.com" rel="noopener noreferrer" target="_blank"></noscript>
+				<button id="`+x.id+`" type="button">`+x.city+`</button>
+				<noscript></a>`+x.city+`</noscript>`;
+	document.getElementById("eventJS").innerHTML += button;
+
+	window.EBWidgets.createWidget({
+		widgetType: 'checkout',
+		eventId: x.id,
+		modal: true,
+		modalTriggerElementId: x.id,
+		onOrderComplete: exampleCallback
+	});
+});
+
+</script>
+
+</footer>
+</html>
